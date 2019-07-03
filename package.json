@@ -1,0 +1,35 @@
+{
+  "name": "mongoose-timestamp2",
+  "description": "Mongoose plugin that adds createdAt and updatedAt auto-assigned date properties. Forked from mongoose-timestamp by Nicholas Penree <nick@penree.com>.",
+  "version": "0.1.2",
+  "author": "Abhijit Borade <abhijit.borade@gmail.com>",
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "plugin",
+    "timestamps",
+    "createdAt",
+    "updatedAt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/abhijitborade/mongoose-timestamp2"
+  },
+  "devDependencies": {
+    "mocha": "~2.5.3",
+    "mongoosastic": "^4.0.2",
+    "mongoose": "~4.5.3",
+    "request": "^2.72.0",
+    "should": "~9.0.2"
+  },
+  "scripts": {
+    "test": "mocha -u bdd -R spec -c ./test/*test.js"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">= 0.6"
+  },
+  "dependencies": {
+    "defaults": "^1.0.3"
+  }
+}
