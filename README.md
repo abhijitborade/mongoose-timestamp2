@@ -39,7 +39,7 @@ user.save(function (err) {
     }, 1000);
 });
 ```
-#### Conflict for createdAt and __v when doing update or findOneAndUpdate (mongoose >= 5.X)
+#### Conflict for createdAt and __v when doing update or findOneAndUpdate (mongoose 5.X)
 
 [Fixed conflict for createdAt and __v when doing update or findOneAndUpdate](https://github.com/drudge/mongoose-timestamp/pull/48). `MongoError: Updating the path 'createdAt' would create a conflict at 'createdAt'`.
 
