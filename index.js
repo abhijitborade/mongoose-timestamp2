@@ -47,17 +47,17 @@ function timestampsPlugin(schema, options) {
         if (schema.virtual(createdAt).get) {
           schema.virtual(createdAt)
               .get( function () {
-                  if (this["_" + createdAt]) return this["_" + createdAt];
-                  return this["_" + createdAt] = this._id.getTimestamp();
+                  if (this['_' + createdAt]) return this['_' + createdAt];
+                  return this['_' + createdAt] = this._id.getTimestamp();
               });
         }
         schema.pre('save', function(next) {
             if (this.isNew) {
-                var newDate = new Date;
+                var newDate = new Date();
                 if (createdAt) this[createdAt] = newDate;
                 if (updatedAt) this[updatedAt] = newDate;
             } else if (this.isModified() && updatedAt) {
-                this[updatedAt] = new Date;
+                this[updatedAt] = new Date();
             }
             next();
         });
@@ -71,11 +71,11 @@ function timestampsPlugin(schema, options) {
         }
         schema.pre('save', function(next) {
             if (!this[createdAt]) {
-                var newDate = new Date;
+                var newDate = new Date();
                 if (createdAt) this[createdAt] = newDate;
                 if (updatedAt) this[updatedAt] = newDate;
             } else if (this.isModified() && updatedAt) {
-                this[updatedAt] = new Date;
+                this[updatedAt] = new Date();
             }
             next();
         });
@@ -83,15 +83,26 @@ function timestampsPlugin(schema, options) {
 
     schema.pre('findOneAndUpdate', function(next) {
     if (this.op === 'findOneAndUpdate') {
-        var newDate = new Date;
+        var newDate = new Date();
         this._update = this._update || {};
         if (createdAt) {
             if (this._update[createdAt]) {
               delete this._update[createdAt];
             }
-
+            if (this._update.__v) {
+                delete this._update.__v;
+              }
+            if(this._update.$set && this._update.$set[createdAt]) {
+                delete this._update.$set[createdAt];
+            }
+            var __v = 0;
+            if(this._update.$set && this._update.$set.__v != null) {
+                __v = JSON.parse(JSON.stringify({__v: this._update.$set.__v})).__v;
+                delete this._update.$set.__v;
+            }
             this._update['$setOnInsert'] = this._update['$setOnInsert'] || {};
             this._update['$setOnInsert'][createdAt] = newDate;
+            this._update['$setOnInsert'].__v = __v;
         }
         if (updatedAt) {
             this._update[updatedAt] = newDate;
@@ -102,15 +113,27 @@ function timestampsPlugin(schema, options) {
 
     schema.pre('update', function(next) {
     if (this.op === 'update') {
-        var newDate = new Date;
+        var newDate = new Date();
         this._update = this._update || {};
         if (createdAt) {
             if (this._update[createdAt]) {
               delete this._update[createdAt];
             }
 
+            if (this._update.__v) {
+                delete this._update.__v;
+              }
+            if(this._update.$set && this._update.$set[createdAt]) {
+                delete this._update.$set[createdAt];
+            }
+            var __v = 0;
+            if(this._update.$set && this._update.$set.__v != null) {
+                __v = JSON.parse(JSON.stringify({__v: this._update.$set.__v})).__v;
+                delete this._update.$set.__v;
+            }
             this._update['$setOnInsert'] = this._update['$setOnInsert'] || {};
             this._update['$setOnInsert'][createdAt] = newDate;
+            this._update['$setOnInsert'].__v = __v;
         }
         if (updatedAt) {
             this._update[updatedAt] = newDate;
@@ -121,7 +144,7 @@ function timestampsPlugin(schema, options) {
 
     if(!schema.methods.hasOwnProperty('touch') && updatedAt)
     schema.methods.touch = function(callback){
-        this[updatedAt] = new Date;
+        this[updatedAt] = new Date();
         this.save(callback);
     }
 
