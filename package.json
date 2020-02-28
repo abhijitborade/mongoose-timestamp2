@@ -6,7 +6,12 @@
   "keywords": [
     "mongodb",
     "mongoose",
+    "mongoose-timestamp",
+    "mongoose-timestamp2",
+    "mongoose-timestamps",
+    "mongoose-timestamps2",
     "plugin",
+    "timestamp-plugin",
     "timestamps",
     "createdAt",
     "updatedAt"
