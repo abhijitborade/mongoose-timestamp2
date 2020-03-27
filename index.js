@@ -94,11 +94,11 @@ function timestampsPlugin(schema, options) {
                     delete this._update.$set[createdAt];
                 }
 
-                if (this._update['__v']) {
+                if (this._update['__v'] != undefined) {
                     delete this._update['__v'];
                 }
 
-                if (this._update.$set && this._update.$set['__v']) {
+                if (this._update.$set && this._update.$set['__v'] != undefined) {
                     delete this._update.$set['__v'];
                 }
 
@@ -125,11 +125,11 @@ function timestampsPlugin(schema, options) {
                     delete this._update.$set[createdAt];
                 }
 
-                if (this._update['__v']) {
+                if (this._update['__v'] != undefined) {
                     delete this._update['__v'];
                 }
 
-                if (this._update.$set && this._update.$set['__v']) {
+                if (this._update.$set && this._update.$set['__v'] != undefined) {
                     delete this._update.$set['__v'];
                 }
 
