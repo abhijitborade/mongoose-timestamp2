@@ -89,11 +89,19 @@ function timestampsPlugin(schema, options) {
                 if (this._update[createdAt]) {
                     delete this._update[createdAt];
                 }
-                
+
                 if (this._update.$set && this._update.$set[createdAt]) {
                     delete this._update.$set[createdAt];
                 }
-                
+
+                if (this._update['__v']) {
+                    delete this._update['__v'];
+                }
+
+                if (this._update.$set && this._update.$set['__v']) {
+                    delete this._update.$set['__v'];
+                }
+
                 this._update['$setOnInsert'] = this._update['$setOnInsert'] || {};
                 this._update['$setOnInsert'][createdAt] = newDate;
             }
@@ -116,6 +124,15 @@ function timestampsPlugin(schema, options) {
                 if (this._update.$set && this._update.$set[createdAt]) {
                     delete this._update.$set[createdAt];
                 }
+
+                if (this._update['__v']) {
+                    delete this._update['__v'];
+                }
+
+                if (this._update.$set && this._update.$set['__v']) {
+                    delete this._update.$set['__v'];
+                }
+
                 this._update['$setOnInsert'] = this._update['$setOnInsert'] || {};
                 this._update['$setOnInsert'][createdAt] = newDate;
             }
