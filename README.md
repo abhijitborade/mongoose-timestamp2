@@ -1,4 +1,24 @@
-Mongoose Timestamps Plugin
+# mongoose-timestamp2
+
+**This package is deprecated. Please use Mongoose's built-in timestamps option within schema definitions instead.**
+
+## Deprecation Notice
+
+This package is no longer maintained. Mongoose now includes a built-in timestamps option that provides similar functionality. Please update your schemas to use the native timestamps option as shown below:
+
+### Example
+
+```js
+const mongoose = require('mongoose');
+
+const mySchema = new mongoose.Schema({
+  // your schema fields
+}, { timestamps: true });
+
+const MyModel = mongoose.model('MyModel', mySchema);
+```
+
+Mongoose Timestamps
 ==========================
 
 Simple plugin for [Mongoose](https://github.com/LearnBoost/mongoose) which adds `createdAt` and `updatedAt` date attributes
