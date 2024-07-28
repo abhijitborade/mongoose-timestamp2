@@ -1,5 +1,3 @@
-# mongoose-timestamp2
-
 **This package is deprecated. Please use Mongoose's built-in timestamps option within schema definitions instead.**
 
 ## Deprecation Notice
